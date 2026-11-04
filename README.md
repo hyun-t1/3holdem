@@ -2,10 +2,10 @@
 
 3명의 쇼다운 승자를 판정하는 한국어 교육용 웹앱입니다. 외부 패키지, 계정, API 키 없이 로컬에서 실행합니다.
 
-- GitHub Pages 배포 예정 주소 (배포 후 사용): [3장 홀덤 딜러 트레이너](https://hyun-t1.github.io/3holdem/)
-- 소스 코드 저장소 예정 주소 (생성 후 사용): [hyun-t1/3holdem](https://github.com/hyun-t1/3holdem)
+- GitHub Pages: [3장 홀덤 딜러 트레이너](https://hyun-t1.github.io/3holdem/)
+- 소스 코드 저장소: [hyun-t1/3holdem](https://github.com/hyun-t1/3holdem)
 
-현재 로컬에는 자동 배포 구성이 준비되어 있습니다. 저장소 생성과 첫 배포가 완료된 뒤에는 [Actions](https://github.com/hyun-t1/3holdem/actions)에서 배포 결과를 확인할 수 있습니다.
+`main` 브랜치에 푸시하면 테스트와 정적 빌드를 거쳐 GitHub Pages에 자동 배포합니다. [Actions](https://github.com/hyun-t1/3holdem/actions)에서 배포 결과를 확인할 수 있습니다.
 
 ## 실행
 

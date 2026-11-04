@@ -1,0 +1,15 @@
+{
+  "name": "three-card-holdem-dealer-trainer",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "3장 홀덤 쇼다운 판정 딜러 트레이너",
+  "engines": { "node": ">=24" },
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "dev": "node scripts/server.mjs",
+    "test": "node --test --test-isolation=none",
+    "build": "node scripts/build.mjs",
+    "preview": "node scripts/server.mjs --dist"
+  }
+}

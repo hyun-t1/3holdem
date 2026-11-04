@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#10201e" />
+    <meta name="description" content="홀카드 최대 2장 규칙을 정확하게 익히는 3장 홀덤 딜러 쇼다운 트레이너" />
+    <title>RIVER ROOM — 3장 홀덤 딜러 트레이너</title>
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%23172925'/%3E%3Ctext x='10' y='49' font-size='53' fill='%23d6bc7a'%3E♠%3C/text%3E%3C/svg%3E" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="module" src="./src/app.js"></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="./" aria-label="리버 룸 홈"><span class="brand-mark">♠</span><span>RIVER ROOM<small>DEALER ACADEMY</small></span></a>
+      <nav aria-label="주 메뉴"><a class="nav-active" href="#training">쇼다운 훈련</a><button class="nav-button" id="guide-open">족보 가이드 <span>↗</span></button></nav>
+      <div class="header-label"><span class="live-dot"></span> DEALER TRAINING</div>
+    </header>
+    <main id="training" class="workspace">
+      <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">3-CARD HOLD’EM / SHOWDOWN TRAINER</p><h1 id="page-title">쇼다운, <span>정확하게.</span></h1><p class="intro-copy">승자를 읽는 눈. 정확한 판정은 반복에서 시작됩니다.</p></div><span class="edition">THREE CARDS.<br>ONE RIGHT CALL.</span></section>
+      <section class="stats-bar" aria-label="훈련 통계">
+        <div class="stat"><span class="stat-icon">◎</span><div><span class="stat-label">정답률</span><strong id="accuracy">0<small>%</small></strong></div></div>
+        <div class="stat"><span class="stat-icon">▤</span><div><span class="stat-label">완료한 문제</span><strong id="total">0<small>핸드</small></strong></div></div>
+        <div class="stat"><span class="stat-icon">ϟ</span><div><span class="stat-label">연속 정답</span><strong id="streak">0<small>회</small></strong></div></div>
+        <div class="stats-note"><span class="live-dot"></span>훈련 기록 자동 저장<span class="stats-sub">이 브라우저에서 이어서 연습하세요</span></div>
+      </section>
+      <div class="training-grid">
+        <div class="main-column">
+          <section class="table-panel" aria-label="쇼다운 테이블">
+            <div class="table-toolbar"><div class="hand-number"><span class="tiny-diamond">◆</span><span id="hand-label">HAND 001</span><span id="table-level" class="level-badge">일반</span></div><span id="reveal-status" class="table-status"><span class="lock-icon">◇</span> 카드 비공개</span></div>
+            <div class="felt">
+              <div class="table-ring" aria-hidden="true"></div>
+              <div class="community-area"><div class="section-label"><span></span> COMMUNITY CARDS <span></span></div><div id="community" class="cards community-cards"></div><p id="board-hint" class="board-hint">정답 확인 후 모든 카드가 공개됩니다</p></div>
+              <div class="table-wordmark" aria-hidden="true">RIVER <span>♠</span> ROOM<small>3-CARD HOLD’EM</small></div>
+              <div id="players" class="players"></div>
+            </div>
+            <div class="table-footer"><span><i class="legend-dot"></i> <span id="legend-text">각 플레이어 홀카드 3장 · 커뮤니티 5장</span></span><span>52-CARD DECK <span class="footer-suits">♠ <b>♥ ♦</b> ♣</span></span></div>
+          </section>
+          <section class="review-panel" aria-label="분석과 기록">
+            <div class="review-tabs" role="tablist" aria-label="훈련 정보"><button id="analysis-tab" class="review-tab active" role="tab" aria-controls="analysis-panel" aria-selected="true">핸드 분석 <span id="analysis-dot"></span></button><button id="history-tab" class="review-tab" role="tab" aria-controls="history-panel" aria-selected="false" tabindex="-1">훈련 기록 <span id="history-count" class="tab-count">0</span></button></div>
+            <div id="analysis-panel" role="tabpanel" aria-labelledby="analysis-tab"><div class="analysis-empty"><span class="empty-icon">♧</span><div><h3>판정의 근거까지 확인하세요</h3><p>정답을 확인하면 최종 5장, 킥커 비교, 공동 승리 이유가 표시됩니다.</p></div></div></div>
+            <div id="history-panel" role="tabpanel" aria-labelledby="history-tab" hidden></div>
+          </section>
+        </div>
+        <aside class="side-column">
+          <section class="decision-panel" aria-labelledby="decision-title">
+            <div class="panel-heading"><span class="step-number">01</span><h2>훈련 설정</h2></div>
+            <label class="field-label" for="difficulty">난이도</label><div class="select-wrap"><select id="difficulty"><option value="normal">일반</option><option value="hard">어려움</option><option value="expert">전문가</option></select><span>⌄</span></div><p id="difficulty-description" class="field-description"></p>
+            <div class="panel-divider"></div>
+            <div class="panel-heading"><span class="step-number">02</span><h2 id="decision-title">승자를 선택하세요</h2></div><p class="selection-help">공동 승리는 함께 선택하세요.</p>
+            <fieldset id="winner-options" class="winner-options"><legend class="sr-only">예상 승자 7가지 선택지</legend></fieldset>
+            <p id="selection-status" class="selection-status" aria-live="polite">승자 선택 후 정답을 확인하세요</p>
+            <button id="check-answer" class="button button-gold" disabled><span>정답 확인</span><span>↗</span></button>
+            <button id="new-hand" class="button button-outline"><span class="shuffle-icon">⤨</span> 새 핸드 <span class="key-hint">N</span></button>
+          </section>
+          <section class="rule-card"><span class="rule-eyebrow">THE GOLDEN RULE</span><div class="rule-title">3장 중, <em>최대 2장.</em></div><p>홀카드를 3장 모두 사용할 수 없습니다.<br>항상 가장 강한 <b>5장</b>으로 판정합니다.</p><div class="rule-equation"><span>홀카드 <b>0 / 1 / 2</b></span><span>+</span><span>커뮤니티 <b>5 / 4 / 3</b></span></div><button id="rule-guide" class="text-link">전체 규칙과 족보 보기 <span>→</span></button></section>
+        </aside>
+      </div>
+      <footer class="site-footer"><span>RIVER ROOM <span class="footer-separator">/</span> PRACTICE MAKES PRECISION.</span><span>베팅 없는 딜러 판정 훈련</span></footer>
+    </main>
+    <dialog id="guide-dialog" aria-labelledby="guide-title"><div class="dialog-header"><div><p class="eyebrow">DEALER’S HANDBOOK</p><h2 id="guide-title">규칙과 족보 가이드</h2></div><button id="guide-close" class="close-button" aria-label="가이드 닫기">×</button></div><div class="guide-body"><div class="guide-rule"><strong>홀카드 0~2장 + 커뮤니티 5~3장 = 최종 5장</strong><p>플레이어마다 가능한 46개 조합을 모두 비교합니다. 홀카드 3장을 사용하는 조합은 제외합니다. 같은 족보이면 숫자와 킥커를 차례로 비교하며, 무늬로 승패를 결정하지 않습니다. 완전히 같으면 공동 승리입니다.</p></div><div id="rank-guide" class="rank-guide"></div><p class="guide-footnote">A는 가장 높은 숫자입니다. 단, A·2·3·4·5는 5 하이 스트레이트로 가장 낮습니다. Q·K·A·2·3처럼 이어지는 순환 스트레이트는 인정하지 않습니다.</p></div></dialog>
+    <div id="toast" class="toast" role="status" hidden></div>
+    <noscript>이 웹앱을 사용하려면 브라우저의 JavaScript를 활성화해주세요.</noscript>
+  </body>
+</html>

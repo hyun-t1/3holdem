@@ -33,7 +33,7 @@ function persist() {
   storageAvailable = saveSession(session);
   $('.stats-note').innerHTML = storageAvailable ? '<span class="live-dot"></span>훈련 기록 자동 저장<span class="stats-sub">이 브라우저에서 이어서 연습하세요</span>' : '<span class="live-dot"></span>현재 세션에서 기록 중<span class="stats-sub">브라우저 저장소를 사용할 수 없습니다</span>';
 }
-function cardHTML(card, { face = revealed, used = false, dim = false, mini = false } = {}) {
+function cardHTML(card, { face = true, used = false, dim = false, mini = false } = {}) {
   if (!face) return `<div class="playing-card card-back${mini ? ' mini-card' : ''}" role="img" aria-label="뒷면 카드"><div class="back-border"><span>♠</span><small>RR</small></div></div>`;
   const red = card.suit === 'H' || card.suit === 'D';
   return `<div class="playing-card card-face${red ? ' red' : ''}${used ? ' used-card' : ''}${dim ? ' unused-card' : ''}${mini ? ' mini-card' : ''}" role="img" aria-label="${SUIT_NAMES[card.suit]} ${rank(card.rank)}${used ? ', 최종 족보에 사용' : ''}" data-card="${card.id}"><span class="card-corner">${rank(card.rank)}<small>${SUITS[card.suit]}</small></span><span class="card-pip">${SUITS[card.suit]}</span><span class="card-corner bottom">${rank(card.rank)}<small>${SUITS[card.suit]}</small></span>${used ? '<span class="used-check" aria-hidden="true">✓</span>' : ''}</div>`;
@@ -52,8 +52,8 @@ function renderTable() {
   }).join('');
   $('#hand-label').textContent = `HAND ${String(handNumber).padStart(3, '0')}`;
   $('#table-level').textContent = DIFFICULTIES[deal.difficulty];
-  $('#reveal-status').innerHTML = revealed ? '<span class="live-dot"></span> 쇼다운 공개' : '<span class="lock-icon">◇</span> 카드 비공개';
-  $('#board-hint').textContent = revealed ? `플레이어 ${focusPlayer + 1}의 최종 족보에 사용된 공용 카드` : '정답 확인 후 모든 카드가 공개됩니다';
+  $('#reveal-status').innerHTML = revealed ? '<span class="live-dot"></span> 판정 완료' : '<span class="live-dot"></span> 승자 판단 중';
+  $('#board-hint').textContent = revealed ? `플레이어 ${focusPlayer + 1}의 최종 족보에 사용된 공용 카드` : '카드 숫자와 무늬를 보고 승자를 판단하세요';
   $('#legend-text').textContent = revealed ? '금색 테두리 = 사용 카드 · 흐린 카드 = 미사용' : '각 플레이어 홀카드 3장 · 커뮤니티 5장';
 }
 function renderOptions() {

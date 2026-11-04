@@ -17,7 +17,7 @@
       <div class="header-label"><span class="live-dot"></span> DEALER TRAINING</div>
     </header>
     <main id="training" class="workspace">
-      <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">3-CARD HOLD’EM / SHOWDOWN TRAINER</p><h1 id="page-title">쇼다운, <span>정확하게.</span></h1><p class="intro-copy">승자를 읽는 눈. 정확한 판정은 반복에서 시작됩니다.</p></div><span class="edition">THREE CARDS.<br>ONE RIGHT CALL.</span></section>
+      <section class="intro" aria-labelledby="page-title"><div><p class="eyebrow">3-CARD HOLD’EM / SHOWDOWN TRAINER</p><h1 id="page-title">쇼다운, <span>정확하게.</span></h1><p class="intro-copy">카드 14장을 보고 승자 조합을 선택하세요.<br>정답 확인 → 최종 5장 복습 → 새 핸드</p></div><span class="edition">THREE CARDS.<br>ONE RIGHT CALL.</span></section>
       <section class="stats-bar" aria-label="훈련 통계">
         <div class="stat"><span class="stat-icon">◎</span><div><span class="stat-label">정답률</span><strong id="accuracy">0<small>%</small></strong></div></div>
         <div class="stat"><span class="stat-icon">▤</span><div><span class="stat-label">완료한 문제</span><strong id="total">0<small>핸드</small></strong></div></div>
@@ -27,10 +27,10 @@
       <div class="training-grid">
         <div class="main-column">
           <section class="table-panel" aria-label="쇼다운 테이블">
-            <div class="table-toolbar"><div class="hand-number"><span class="tiny-diamond">◆</span><span id="hand-label">HAND 001</span><span id="table-level" class="level-badge">일반</span></div><span id="reveal-status" class="table-status"><span class="lock-icon">◇</span> 카드 비공개</span></div>
+            <div class="table-toolbar"><div class="hand-number"><span class="tiny-diamond">◆</span><span id="hand-label">HAND 001</span><span id="table-level" class="level-badge">일반</span></div><span id="reveal-status" class="table-status"><span class="live-dot"></span> 승자 판단 중</span></div>
             <div class="felt">
               <div class="table-ring" aria-hidden="true"></div>
-              <div class="community-area"><div class="section-label"><span></span> COMMUNITY CARDS <span></span></div><div id="community" class="cards community-cards"></div><p id="board-hint" class="board-hint">정답 확인 후 모든 카드가 공개됩니다</p></div>
+              <div class="community-area"><div class="section-label"><span></span> COMMUNITY CARDS <span></span></div><div id="community" class="cards community-cards"></div><p id="board-hint" class="board-hint">카드 숫자와 무늬를 보고 승자를 판단하세요</p></div>
               <div class="table-wordmark" aria-hidden="true">RIVER <span>♠</span> ROOM<small>3-CARD HOLD’EM</small></div>
               <div id="players" class="players"></div>
             </div>
@@ -47,7 +47,7 @@
             <div class="panel-heading"><span class="step-number">01</span><h2>훈련 설정</h2></div>
             <label class="field-label" for="difficulty">난이도</label><div class="select-wrap"><select id="difficulty"><option value="normal">일반</option><option value="hard">어려움</option><option value="expert">전문가</option></select><span>⌄</span></div><p id="difficulty-description" class="field-description"></p>
             <div class="panel-divider"></div>
-            <div class="panel-heading"><span class="step-number">02</span><h2 id="decision-title">승자를 선택하세요</h2></div><p class="selection-help">공동 승리는 함께 선택하세요.</p>
+            <div class="panel-heading"><span class="step-number">02</span><h2 id="decision-title">승자를 선택하세요</h2></div><p class="selection-help">단독 또는 공동 승리 조합을 선택하세요.</p>
             <fieldset id="winner-options" class="winner-options"><legend class="sr-only">예상 승자 7가지 선택지</legend></fieldset>
             <p id="selection-status" class="selection-status" aria-live="polite">승자 선택 후 정답을 확인하세요</p>
             <button id="check-answer" class="button button-gold" disabled><span>정답 확인</span><span>↗</span></button>

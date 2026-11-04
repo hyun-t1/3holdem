@@ -1,4 +1,5 @@
-import { cp, mkdir, rm, stat } from 'node:fs/promises';
+import { cp, mkdir, readFile, readdir, rm, stat, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -19,6 +20,30 @@ for (const name of ['index.html', 'styles.css', 'src']) {
     filter: (source) => !path.basename(source).startsWith('.') && !source.endsWith('.test.js'),
   });
 }
+
+// Version the entrypoint and every local module together so a new page never
+// executes an older cached evaluator or training flow on GitHub Pages.
+const scriptFiles = (await readdir(path.join(output, 'src'), { recursive: true }))
+  .filter(name => name.endsWith('.js'))
+  .map(name => path.join(output, 'src', name))
+  .sort();
+const versionHash = createHash('sha256');
+for (const filename of [path.join(output, 'styles.css'), ...scriptFiles]) {
+  versionHash.update(path.relative(output, filename).replaceAll('\\', '/'));
+  versionHash.update(await readFile(filename));
+}
+const version = versionHash.digest('hex').slice(0, 12);
+for (const filename of scriptFiles) {
+  const source = await readFile(filename, 'utf8');
+  const versioned = source.replace(/((?:from\s*|import\s*)['"])(\.{1,2}\/[^'"\r\n]+\.js)(['"])/g,
+    (_match, prefix, modulePath, quote) => `${prefix}${modulePath}?v=${version}${quote}`);
+  await writeFile(filename, versioned);
+}
+const entrypoint = path.join(output, 'index.html');
+const html = await readFile(entrypoint, 'utf8');
+await writeFile(entrypoint, html
+  .replace('./styles.css', `./styles.css?v=${version}`)
+  .replace('./src/app.js', `./src/app.js?v=${version}`));
 try {
   await stat(path.join(root, 'public'));
   await cp(path.join(root, 'public'), path.join(output, 'public'), { recursive: true });
